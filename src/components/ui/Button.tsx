@@ -22,11 +22,11 @@ export default function Button({
   disabled = false,
 }: ButtonProps) {
   const base =
-    'font-mono text-xs tracking-widest uppercase px-6 py-3 transition-all duration-200 inline-block cursor-pointer select-none rounded-sm'
+    'font-body text-sm font-semibold tracking-wide px-6 py-3 transition-all duration-200 inline-block cursor-pointer select-none rounded-sm'
   const primary =
-    'bg-cyan text-[#111827] font-bold hover:opacity-90 disabled:opacity-50'
+    'bg-cyan text-white hover:opacity-90 disabled:opacity-50'
   const secondary =
-    'border border-cyan/50 text-cyan hover:border-cyan hover:bg-cyan/5 disabled:opacity-50'
+    'border border-border-strong text-ink-secondary hover:border-cyan hover:text-cyan disabled:opacity-50'
 
   const cls = `${base} ${variant === 'primary' ? primary : secondary} ${className}`
 

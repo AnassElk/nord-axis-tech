@@ -24,16 +24,16 @@ export default function Navbar() {
   ]
 
   return (
-    <header className="fixed top-0 inset-x-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-8">
+    <header className="fixed top-0 inset-x-0 z-50 border-b border-[rgba(15,25,35,0.1)] bg-white/90 backdrop-blur-md">
+      <nav className="max-w-7xl mx-auto px-6 lg:px-8 h-16 flex items-center justify-between gap-8">
         {/* Logo */}
         <Link href={`/${locale}`} className="font-display text-xl tracking-widest shrink-0">
-          <span className="text-white">NORD </span>
+          <span className="text-ink">NORD </span>
           <span className="text-cyan">AXIS</span>
-          <span className="text-white"> TECH</span>
+          <span className="text-ink"> TECH</span>
         </Link>
 
-        {/* Desktop nav links */}
+        {/* Desktop nav */}
         <div className="hidden md:flex items-center gap-8 flex-1">
           {navLinks.map((link) => {
             const active = pathname.startsWith(link.href)
@@ -41,8 +41,8 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`font-mono text-xs tracking-widest uppercase transition-colors ${
-                  active ? 'text-cyan' : 'text-muted hover:text-white'
+                className={`font-body text-sm font-medium transition-colors ${
+                  active ? 'text-cyan' : 'text-ink-secondary hover:text-ink'
                 }`}
               >
                 {t(link.key as any)}
@@ -52,16 +52,16 @@ export default function Navbar() {
         </div>
 
         {/* Locale switcher + CTA */}
-        <div className="hidden md:flex items-center gap-4">
-          <div className="flex gap-1">
+        <div className="hidden md:flex items-center gap-5">
+          <div className="flex gap-1 border border-border rounded-sm overflow-hidden">
             {(['en', 'fr', 'ar'] as const).map((loc) => (
               <Link
                 key={loc}
                 href={`/${loc}${pathWithoutLocale}`}
-                className={`font-mono text-xs px-2 py-1 transition-colors ${
+                className={`font-mono text-xs px-2.5 py-1.5 transition-colors ${
                   locale === loc
-                    ? 'text-cyan border border-cyan/40'
-                    : 'text-muted hover:text-white'
+                    ? 'bg-cyan text-white'
+                    : 'text-muted hover:text-ink'
                 }`}
               >
                 {LOCALE_LABELS[loc]}
@@ -70,7 +70,7 @@ export default function Navbar() {
           </div>
           <Link
             href={`/${locale}/contact`}
-            className="font-mono text-xs tracking-widest uppercase bg-cyan text-[#111827] px-5 py-2.5 font-bold hover:opacity-90 transition-opacity rounded-sm"
+            className="font-body text-sm font-semibold tracking-wide bg-ink text-white px-5 py-2 hover:bg-ink-secondary transition-colors rounded-sm"
           >
             {t('cta')}
           </Link>
@@ -78,7 +78,7 @@ export default function Navbar() {
 
         {/* Mobile hamburger */}
         <button
-          className="md:hidden text-muted hover:text-white transition-colors"
+          className="md:hidden text-muted hover:text-ink transition-colors"
           onClick={() => setOpen(!open)}
           aria-label="Toggle menu"
           aria-expanded={open}
@@ -89,24 +89,24 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {open && (
-        <div className="md:hidden bg-surface border-b border-border px-4 py-6 flex flex-col gap-4">
+        <div className="md:hidden bg-white border-b border-border px-6 py-6 flex flex-col gap-4">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="font-mono text-sm text-muted hover:text-white tracking-widest uppercase transition-colors"
+              className="font-body text-sm font-medium text-ink-secondary hover:text-ink transition-colors"
               onClick={() => setOpen(false)}
             >
               {t(link.key as any)}
             </Link>
           ))}
-          <div className="flex gap-2 pt-4 border-t border-border">
+          <div className="flex gap-1 border border-border rounded-sm overflow-hidden self-start pt-4">
             {(['en', 'fr', 'ar'] as const).map((loc) => (
               <Link
                 key={loc}
                 href={`/${loc}${pathWithoutLocale}`}
-                className={`font-mono text-xs px-2 py-1 ${
-                  locale === loc ? 'text-cyan border border-cyan/40' : 'text-muted'
+                className={`font-mono text-xs px-2.5 py-1.5 transition-colors ${
+                  locale === loc ? 'bg-cyan text-white' : 'text-muted'
                 }`}
                 onClick={() => setOpen(false)}
               >
@@ -116,7 +116,7 @@ export default function Navbar() {
           </div>
           <Link
             href={`/${locale}/contact`}
-            className="font-mono text-xs tracking-widest uppercase bg-cyan text-[#111827] px-5 py-2.5 font-bold text-center rounded-sm"
+            className="font-body text-sm font-semibold tracking-wide bg-ink text-white px-5 py-2 text-center hover:bg-ink-secondary transition-colors rounded-sm"
             onClick={() => setOpen(false)}
           >
             {t('cta')}

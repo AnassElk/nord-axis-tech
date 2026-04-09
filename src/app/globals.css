@@ -2,46 +2,54 @@
 @import "tailwindcss";
 
 @theme {
-  /* Colors — Light theme */
-  --color-background: #F2F4F7;
+  /* ── Color tokens ── */
+  --color-background: #F5F6F8;
   --color-surface: #FFFFFF;
   --color-card: #FFFFFF;
+  --color-ink: #0F1923;
+  --color-ink-secondary: #3D4F61;
+  --color-muted: #7A8FA6;
   --color-cyan: #00A896;
-  --color-amber: #F59E0B;
-  --color-white: #111827;
-  --color-muted: #6B7A8D;
-  --color-border: rgba(0, 0, 0, 0.08);
+  --color-cyan-light: #E6F7F5;
+  --color-amber: #E08A00;
+  --color-border: rgba(15, 25, 35, 0.1);
+  --color-border-strong: rgba(15, 25, 35, 0.18);
 
-  /* Font families */
+  /* Aliases used throughout components */
+  --color-white: #0F1923;
+  --color-surface-alt: #EEF0F3;
+
+  /* ── Font families ── */
   --font-display: var(--font-bebas), sans-serif;
   --font-body: var(--font-dm-sans), sans-serif;
   --font-mono: var(--font-space-mono), monospace;
 
-  /* Animations */
-  --animate-ticker: ticker 30s linear infinite;
+  /* ── Animations ── */
+  --animate-ticker: ticker 40s linear infinite;
 
-  /* Keyframes */
   @keyframes ticker {
     0% { transform: translateX(0); }
     100% { transform: translateX(-50%); }
   }
 }
 
+/* ── Base ── */
 body {
-  background-color: #F2F4F7;
+  background-color: #F5F6F8;
+  color: #0F1923;
 }
 
-/* Custom scrollbar */
+/* ── Scrollbar ── */
 ::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: #F2F4F7; }
-::-webkit-scrollbar-thumb { background: rgba(0, 168, 150, 0.3); border-radius: 2px; }
+::-webkit-scrollbar-track { background: #F5F6F8; }
+::-webkit-scrollbar-thumb { background: rgba(0, 168, 150, 0.35); border-radius: 2px; }
 
-/* Ticker pause on hover */
+/* ── Ticker ── */
 .ticker-container:hover .ticker-inner {
   animation-play-state: paused;
 }
 
-/* RTL section label line direction */
+/* ── RTL section label ── */
 [dir="rtl"] .section-label-line {
-  background: linear-gradient(to left, rgba(0,168,150,0.3), transparent) !important;
+  background: linear-gradient(to left, rgba(0,168,150,0.25), transparent) !important;
 }

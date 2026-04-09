@@ -7,15 +7,13 @@ interface SectionLabelProps {
 export default function SectionLabel({ number, label }: SectionLabelProps) {
   return (
     <div className="flex items-center gap-3 mb-8">
-      <span className="font-mono text-xs text-cyan tracking-widest uppercase">
-        {number} — {label}
+      <span className="font-body text-xs font-semibold text-cyan tracking-[0.18em] uppercase">
+        {number}
       </span>
-      <div
-        className="section-label-line flex-1 h-px max-w-[120px]"
-        style={{
-          background: 'linear-gradient(to right, rgba(0,200,180,0.3), transparent)',
-        }}
-      />
+      <div className="w-px h-3 bg-border-strong" />
+      <span className="font-body text-xs font-semibold text-muted tracking-[0.18em] uppercase">
+        {label}
+      </span>
     </div>
   )
 }

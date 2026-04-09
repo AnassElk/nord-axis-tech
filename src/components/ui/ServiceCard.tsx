@@ -17,22 +17,20 @@ export default function ServiceCard({
   tags,
 }: ServiceCardProps) {
   return (
-    <div className="group relative bg-card border border-border p-6 overflow-hidden hover:border-cyan/30 transition-all duration-300 hover:-translate-y-1">
-      {/* HUD corner brackets */}
-      <div className="absolute top-2 left-2 w-3 h-3 border-t border-l border-cyan/30 group-hover:border-cyan transition-colors duration-300" />
-      <div className="absolute top-2 right-2 w-3 h-3 border-t border-r border-cyan/30 group-hover:border-cyan transition-colors duration-300" />
-      <div className="absolute bottom-2 left-2 w-3 h-3 border-b border-l border-amber/20 group-hover:border-amber/50 transition-colors duration-300" />
-      <div className="absolute bottom-2 right-2 w-3 h-3 border-b border-r border-amber/20 group-hover:border-amber/50 transition-colors duration-300" />
-
-      <span className="font-mono text-xs text-muted tracking-widest">{number}</span>
-      <Icon className="w-8 h-8 text-cyan mt-3 mb-4" strokeWidth={1.5} />
-      <h3 className="font-display text-xl text-white tracking-wider mb-2">{title}</h3>
-      <p className="font-body text-sm text-muted leading-relaxed mb-4">{description}</p>
-      <div className="flex flex-wrap gap-2">
+    <div className="group bg-card border border-border p-6 hover:border-cyan/40 hover:shadow-sm transition-all duration-300 rounded-sm">
+      <div className="flex items-start justify-between mb-5">
+        <div className="w-10 h-10 bg-cyan-light flex items-center justify-center rounded-sm">
+          <Icon className="w-5 h-5 text-cyan" strokeWidth={1.5} />
+        </div>
+        <span className="font-mono text-xs text-muted tracking-widest">{number}</span>
+      </div>
+      <h3 className="font-display text-xl text-ink tracking-wider mb-2">{title}</h3>
+      <p className="font-body text-sm text-ink-secondary leading-relaxed mb-5">{description}</p>
+      <div className="flex flex-wrap gap-1.5">
         {tags.map((tag) => (
           <span
             key={tag}
-            className="font-mono text-xs text-muted border border-muted/20 px-2 py-0.5"
+            className="font-body text-xs text-muted bg-background border border-border px-2 py-0.5 rounded-sm"
           >
             {tag}
           </span>

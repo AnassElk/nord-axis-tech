@@ -1,6 +1,7 @@
 // src/app/[locale]/page.tsx
 import { getTranslations, getLocale } from 'next-intl/server'
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import { Brain, Wrench, Bot, Leaf, Link2, Globe, Zap } from 'lucide-react'
 import FadeUp from '@/components/ui/FadeUp'
 import Button from '@/components/ui/Button'
@@ -38,56 +39,44 @@ export default async function HomePage() {
   return (
     <>
       {/* ── HERO ─────────────────────────────────────────── */}
-      <section className="relative min-h-screen flex items-center overflow-hidden px-4 sm:px-6 lg:px-8">
-        {/* Radial glows */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-3xl" style={{ background: 'radial-gradient(circle, rgba(0,168,150,0.07) 0%, transparent 70%)' }} />
-          <div className="absolute bottom-1/4 right-1/4 w-64 h-64 rounded-full blur-3xl" style={{ background: 'radial-gradient(circle, rgba(245,158,11,0.05) 0%, transparent 70%)' }} />
-        </div>
+      <section className="relative min-h-screen flex items-center overflow-hidden px-6 lg:px-8">
+        {/* Subtle top accent line */}
+        <div className="absolute top-0 left-0 right-0 h-0.5 bg-cyan" />
 
-        {/* HUD corner brackets */}
-        <div className="absolute top-20 left-4 lg:left-8 w-6 h-6 border-t-2 border-l-2 border-cyan/60" />
-        <div className="absolute top-20 right-4 lg:right-8 w-6 h-6 border-t-2 border-r-2 border-cyan/60" />
-        <div className="absolute bottom-8 left-4 lg:left-8 w-6 h-6 border-b-2 border-l-2 border-amber/50" />
-        <div className="absolute bottom-8 right-4 lg:right-8 w-6 h-6 border-b-2 border-r-2 border-amber/50" />
-
-        <div className="relative max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-12 items-center py-24">
+        <div className="relative max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-16 items-center py-32">
           {/* Left: headline */}
           <div>
             <FadeUp>
-              <div className="flex items-center gap-2 mb-6">
-                <div className="w-2 h-2 rounded-full bg-cyan animate-pulse" />
-                <span className="font-mono text-xs text-cyan tracking-widest uppercase">
-                  {t('hero.system_tag')}
-                </span>
-              </div>
+              <p className="font-body text-xs font-semibold text-cyan tracking-[0.2em] uppercase mb-8">
+                {t('hero.system_tag')}
+              </p>
             </FadeUp>
 
-            <FadeUp delay={0.1}>
-              <h1 className="font-display leading-none">
-                <span className="block text-6xl sm:text-7xl lg:text-8xl text-white tracking-widest">
+            <FadeUp delay={0.08}>
+              <h1 className="font-display leading-none mb-6">
+                <span className="block text-5xl sm:text-6xl lg:text-7xl xl:text-8xl text-ink tracking-wide">
                   {t('hero.h1_line1')}
                 </span>
-                <span className="block text-6xl sm:text-7xl lg:text-8xl text-cyan tracking-widest">
+                <span className="block text-5xl sm:text-6xl lg:text-7xl xl:text-8xl text-cyan tracking-wide">
                   {t('hero.h1_line2')}
                 </span>
                 <span
-                  className="block text-6xl sm:text-7xl lg:text-8xl tracking-widest"
-                  style={{ WebkitTextStroke: '1px rgba(232,237,242,0.35)', color: 'transparent' }}
+                  className="block text-5xl sm:text-6xl lg:text-7xl xl:text-8xl tracking-wide"
+                  style={{ WebkitTextStroke: '1px rgba(15,25,35,0.2)', color: 'transparent' }}
                 >
                   {t('hero.h1_line3')}
                 </span>
               </h1>
             </FadeUp>
 
-            <FadeUp delay={0.2}>
-              <p className="font-body text-muted leading-relaxed mt-6 max-w-lg text-sm sm:text-base">
+            <FadeUp delay={0.16}>
+              <p className="font-body text-base text-ink-secondary leading-relaxed max-w-md mb-10">
                 {t('hero.subtext')}
               </p>
             </FadeUp>
 
-            <FadeUp delay={0.3}>
-              <div className="flex flex-wrap gap-4 mt-8">
+            <FadeUp delay={0.24}>
+              <div className="flex flex-wrap gap-3">
                 <Button href={`/${locale}/services`} variant="primary">
                   {t('hero.cta_primary')}
                 </Button>
@@ -98,21 +87,22 @@ export default async function HomePage() {
             </FadeUp>
           </div>
 
-          {/* Right: floating stats */}
-          <FadeUp delay={0.4} className="flex flex-col gap-4 items-start lg:items-end">
+          {/* Right: stats */}
+          <FadeUp delay={0.32} className="flex flex-col gap-4 lg:pl-12">
             {[
-              { value: t('stats.stat1_value'), label: t('stats.stat1_label'), color: 'text-cyan' },
-              { value: t('stats.stat2_value'), label: t('stats.stat2_label'), color: 'text-cyan' },
-              { value: t('stats.stat3_value'), label: t('stats.stat3_label'), color: 'text-amber' },
+              { value: t('stats.stat1_value'), label: t('stats.stat1_label'), accent: true },
+              { value: t('stats.stat2_value'), label: t('stats.stat2_label'), accent: true },
+              { value: t('stats.stat3_value'), label: t('stats.stat3_label'), accent: false },
             ].map((stat) => (
               <div
                 key={stat.label}
-                className="bg-card/80 backdrop-blur-sm border border-border px-6 py-4 min-w-[160px]"
+                className="bg-white border border-border px-6 py-5 flex items-center gap-6 rounded-sm"
               >
-                <div className={`font-display text-3xl tracking-widest ${stat.color}`}>
+                <div className={`font-display text-4xl tracking-wide ${stat.accent ? 'text-cyan' : 'text-amber'}`}>
                   {stat.value}
                 </div>
-                <div className="font-mono text-xs text-muted tracking-widest mt-1 uppercase">
+                <div className="w-px h-8 bg-border" />
+                <div className="font-body text-xs font-semibold text-muted tracking-[0.15em] uppercase">
                   {stat.label}
                 </div>
               </div>
@@ -125,10 +115,10 @@ export default async function HomePage() {
       <Ticker />
 
       {/* ── SERVICES PREVIEW ─────────────────────────────── */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+      <section className="max-w-7xl mx-auto px-6 lg:px-8 py-24">
         <FadeUp>
           <SectionLabel number={t('services_section.label_num')} label={t('services_section.label')} />
-          <h2 className="font-display text-4xl sm:text-5xl text-white tracking-widest mb-12">
+          <h2 className="font-display text-4xl sm:text-5xl text-ink tracking-wide mb-12">
             {t('services_section.title')}
           </h2>
         </FadeUp>
@@ -147,8 +137,8 @@ export default async function HomePage() {
           ))}
         </div>
 
-        <FadeUp delay={0.4}>
-          <div className="mt-10 text-center">
+        <FadeUp delay={0.36}>
+          <div className="mt-10">
             <Button href={`/${locale}/services`} variant="secondary">
               {t('hero.cta_primary')}
             </Button>
@@ -157,26 +147,24 @@ export default async function HomePage() {
       </section>
 
       {/* ── WHY NORD AXIS ────────────────────────────────── */}
-      <section className="bg-surface/50 border-y border-border py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="bg-surface border-y border-border py-24">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <FadeUp>
             <SectionLabel number={t('why_section.label_num')} label={t('why_section.label')} />
-            <h2 className="font-display text-4xl sm:text-5xl text-white tracking-widest mb-12">
+            <h2 className="font-display text-4xl sm:text-5xl text-ink tracking-wide mb-16">
               {t('why_section.title')}
             </h2>
           </FadeUp>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-12">
             {whyItems.map((item, i) => {
               const Icon = WHY_ICONS[item.icon] ?? Zap
               return (
                 <FadeUp key={item.title} delay={i * 0.1}>
                   <div className="flex flex-col gap-4">
-                    <div className="w-10 h-10 border border-cyan/30 flex items-center justify-center">
-                      <Icon className="w-5 h-5 text-cyan" />
-                    </div>
-                    <h3 className="font-display text-xl text-white tracking-wider">{item.title}</h3>
-                    <p className="font-body text-sm text-muted leading-relaxed">{item.description}</p>
+                    <Icon className="w-6 h-6 text-cyan" strokeWidth={1.5} />
+                    <h3 className="font-display text-2xl text-ink tracking-wide">{item.title}</h3>
+                    <p className="font-body text-sm text-ink-secondary leading-relaxed">{item.description}</p>
                   </div>
                 </FadeUp>
               )
@@ -186,24 +174,27 @@ export default async function HomePage() {
       </section>
 
       {/* ── TRAINING TEASER ──────────────────────────────── */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+      <section className="max-w-7xl mx-auto px-6 lg:px-8 py-24">
         <FadeUp>
           <SectionLabel number={t('training_teaser.label_num')} label={t('training_teaser.label')} />
-          <h2 className="font-display text-4xl sm:text-5xl text-white tracking-widest mb-12">
+          <h2 className="font-display text-4xl sm:text-5xl text-ink tracking-wide mb-12">
             {t('training_teaser.title')}
           </h2>
         </FadeUp>
 
         <div className="grid md:grid-cols-2 gap-6">
           <FadeUp delay={0.1}>
-            <div className="bg-card border border-cyan/20 p-8 hover:border-cyan/40 transition-colors">
-              <span className="font-mono text-xs text-cyan tracking-widest border border-cyan/30 px-2 py-1">
-                {t('training_teaser.b2b_tag')}
-              </span>
-              <h3 className="font-display text-2xl text-white tracking-wider mt-4 mb-3">
+            <div className="bg-white border border-border p-8 hover:border-cyan/40 transition-colors rounded-sm">
+              <div className="inline-flex items-center gap-2 mb-6">
+                <div className="w-2 h-2 rounded-full bg-cyan" />
+                <span className="font-body text-xs font-semibold text-cyan tracking-[0.15em] uppercase">
+                  {t('training_teaser.b2b_tag')}
+                </span>
+              </div>
+              <h3 className="font-display text-2xl text-ink tracking-wide mb-3">
                 {t('training_teaser.b2b_title')}
               </h3>
-              <p className="font-body text-sm text-muted leading-relaxed mb-6">
+              <p className="font-body text-sm text-ink-secondary leading-relaxed mb-8">
                 {t('training_teaser.b2b_desc')}
               </p>
               <Button href={`/${locale}/training`} variant="primary">
@@ -213,14 +204,17 @@ export default async function HomePage() {
           </FadeUp>
 
           <FadeUp delay={0.2}>
-            <div className="bg-card border border-amber/20 p-8 hover:border-amber/40 transition-colors">
-              <span className="font-mono text-xs text-amber tracking-widest border border-amber/30 px-2 py-1">
-                {t('training_teaser.b2c_tag')}
-              </span>
-              <h3 className="font-display text-2xl text-white tracking-wider mt-4 mb-3">
+            <div className="bg-white border border-border p-8 hover:border-amber/40 transition-colors rounded-sm">
+              <div className="inline-flex items-center gap-2 mb-6">
+                <div className="w-2 h-2 rounded-full bg-amber" />
+                <span className="font-body text-xs font-semibold text-amber tracking-[0.15em] uppercase">
+                  {t('training_teaser.b2c_tag')}
+                </span>
+              </div>
+              <h3 className="font-display text-2xl text-ink tracking-wide mb-3">
                 {t('training_teaser.b2c_title')}
               </h3>
-              <p className="font-body text-sm text-muted leading-relaxed mb-6">
+              <p className="font-body text-sm text-ink-secondary leading-relaxed mb-8">
                 {t('training_teaser.b2c_desc')}
               </p>
               <Button href={`/${locale}/training`} variant="secondary">
@@ -232,23 +226,24 @@ export default async function HomePage() {
       </section>
 
       {/* ── CTA BANNER ───────────────────────────────────── */}
-      <section className="relative border-y border-border overflow-hidden py-24">
-        <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(90deg, rgba(0,168,150,0.05), transparent, rgba(245,158,11,0.05))' }} />
-        <div className="absolute top-4 left-4 w-8 h-8 border-t-2 border-l-2 border-cyan/40" />
-        <div className="absolute top-4 right-4 w-8 h-8 border-t-2 border-r-2 border-cyan/40" />
-        <div className="absolute bottom-4 left-4 w-8 h-8 border-b-2 border-l-2 border-amber/40" />
-        <div className="absolute bottom-4 right-4 w-8 h-8 border-b-2 border-r-2 border-amber/40" />
-
-        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="bg-ink py-24 px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto">
           <FadeUp>
-            <p className="font-mono text-xs text-cyan tracking-widest uppercase mb-4">Nord Axis Tech</p>
-            <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl text-white tracking-widest mb-4">
+            <p className="font-body text-xs font-semibold text-cyan tracking-[0.2em] uppercase mb-6">
+              Nord Axis Tech
+            </p>
+            <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl text-white tracking-wide mb-6">
               {t('cta_banner.quote')}
             </h2>
-            <p className="font-body text-muted mb-10">{t('cta_banner.sub')}</p>
-            <div className="flex flex-wrap justify-center gap-4">
+            <p className="font-body text-base text-white/60 mb-10 max-w-xl">{t('cta_banner.sub')}</p>
+            <div className="flex flex-wrap gap-4">
               <Button href={`/${locale}/contact`} variant="primary">{t('cta_banner.cta1')}</Button>
-              <Button href={`/${locale}/services`} variant="secondary">{t('cta_banner.cta2')}</Button>
+              <Link
+                href={`/${locale}/services`}
+                className="font-body text-sm font-semibold tracking-wide border border-white/30 text-white px-6 py-3 hover:border-white/60 transition-colors rounded-sm inline-block"
+              >
+                {t('cta_banner.cta2')}
+              </Link>
             </div>
           </FadeUp>
         </div>
@@ -256,3 +251,4 @@ export default async function HomePage() {
     </>
   )
 }
+
