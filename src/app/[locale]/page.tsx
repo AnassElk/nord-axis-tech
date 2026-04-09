@@ -41,8 +41,8 @@ export default async function HomePage() {
       <section className="relative min-h-screen flex items-center overflow-hidden px-4 sm:px-6 lg:px-8">
         {/* Radial glows */}
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-3xl" style={{ background: 'radial-gradient(circle, rgba(0,200,180,0.08) 0%, transparent 70%)' }} />
-          <div className="absolute bottom-1/4 right-1/4 w-64 h-64 rounded-full blur-3xl" style={{ background: 'radial-gradient(circle, rgba(245,158,11,0.06) 0%, transparent 70%)' }} />
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-3xl" style={{ background: 'radial-gradient(circle, rgba(0,168,150,0.07) 0%, transparent 70%)' }} />
+          <div className="absolute bottom-1/4 right-1/4 w-64 h-64 rounded-full blur-3xl" style={{ background: 'radial-gradient(circle, rgba(245,158,11,0.05) 0%, transparent 70%)' }} />
         </div>
 
         {/* HUD corner brackets */}
@@ -50,12 +50,6 @@ export default async function HomePage() {
         <div className="absolute top-20 right-4 lg:right-8 w-6 h-6 border-t-2 border-r-2 border-cyan/60" />
         <div className="absolute bottom-8 left-4 lg:left-8 w-6 h-6 border-b-2 border-l-2 border-amber/50" />
         <div className="absolute bottom-8 right-4 lg:right-8 w-6 h-6 border-b-2 border-r-2 border-amber/50" />
-
-        {/* Scan line */}
-        <div
-          className="absolute left-0 right-0 h-px pointer-events-none animate-scan-line"
-          style={{ background: 'linear-gradient(90deg, transparent, rgba(0,200,180,0.25), transparent)' }}
-        />
 
         <div className="relative max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-12 items-center py-24">
           {/* Left: headline */}
@@ -239,7 +233,7 @@ export default async function HomePage() {
 
       {/* ── CTA BANNER ───────────────────────────────────── */}
       <section className="relative border-y border-border overflow-hidden py-24">
-        <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(90deg, rgba(0,200,180,0.04), transparent, rgba(245,158,11,0.04))' }} />
+        <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(90deg, rgba(0,168,150,0.05), transparent, rgba(245,158,11,0.05))' }} />
         <div className="absolute top-4 left-4 w-8 h-8 border-t-2 border-l-2 border-cyan/40" />
         <div className="absolute top-4 right-4 w-8 h-8 border-t-2 border-r-2 border-cyan/40" />
         <div className="absolute bottom-4 left-4 w-8 h-8 border-b-2 border-l-2 border-amber/40" />

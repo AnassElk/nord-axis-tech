@@ -70,8 +70,7 @@ export default function Navbar() {
           </div>
           <Link
             href={`/${locale}/contact`}
-            className="font-mono text-xs tracking-widest uppercase bg-cyan text-background px-5 py-2.5 font-bold hover:opacity-90 transition-opacity"
-            style={{ clipPath: 'polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%)' }}
+            className="font-mono text-xs tracking-widest uppercase bg-cyan text-[#111827] px-5 py-2.5 font-bold hover:opacity-90 transition-opacity rounded-sm"
           >
             {t('cta')}
           </Link>
@@ -117,8 +116,7 @@ export default function Navbar() {
           </div>
           <Link
             href={`/${locale}/contact`}
-            className="font-mono text-xs tracking-widest uppercase bg-cyan text-background px-5 py-2.5 font-bold text-center"
-            style={{ clipPath: 'polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%)' }}
+            className="font-mono text-xs tracking-widest uppercase bg-cyan text-[#111827] px-5 py-2.5 font-bold text-center rounded-sm"
             onClick={() => setOpen(false)}
           >
             {t('cta')}
